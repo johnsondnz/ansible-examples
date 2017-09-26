@@ -1,0 +1,17 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% for item in interfaces.output[0]['rpc-reply']['interface-information']['physical-interface'] %}
+{% if 'ge-' in item.name and item['oper-status'] == 'up' %}
+{% if item['ethernet-autonegotiation'] %}
+{% set mode = 'full-duplex' %}
+{% set failed = true 
+	if 'full-duplex' not in item['ethernet-autonegotiation']['link-partner-duplexity']
+    else false %}
+{% else %}
+{% set mode = 'Full-Duplex' %}
+{% set failed = true 
+	if 'Full-Duplex' not in item['link-mode']
+    else false %}
+{% endif %}
+{{ output_macro('Interface', "{} operating in '{}' mode".format(item.name, mode), failed) }}
+{% endif %}
+{% endfor %}

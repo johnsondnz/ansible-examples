@@ -1,0 +1,7 @@
+---
+- name: Common to all devices
+  hosts: all
+  connection: local
+
+  roles:
+    - common

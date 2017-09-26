@@ -1,0 +1,13 @@
+build_dir: build
+report_dir: reports
+report_type: 'fail'
+
+ansible_user: username
+ansible_ssh_pass: password
+
+ansible_device_os: junos
+netconf:
+  port: 22
+  transport: netconf
+
+known_hosts: "~/.ssh/known_hosts"

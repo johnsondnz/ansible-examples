@@ -1,0 +1,10 @@
+---
+- name: show system core-dumps
+  junos_command:
+    commands: show system core-dumps
+    display: xml
+    provider: "{{ netconf }}"
+  register: core_dumps
+
+  tags:
+    - dumps

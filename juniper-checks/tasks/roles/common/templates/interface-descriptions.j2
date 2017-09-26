@@ -1,0 +1,10 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% for item in interfaces.output[0]['rpc-reply']['interface-information']['physical-interface'] %}
+{% if 'ge-' in item.name and item['oper-status'] == 'up' or 'e1-' in item.name and item['oper-status'] == 'up'  or 'ae' in item.name and item['oper-status'] == 'up' %}
+{% set failed = true 
+	if item.description is undefined
+	or item.description is defined and 'XXX' in item.description
+    else false %}
+{{ output_macro('Interface', '{} has valid description'.format(item.name), failed) }}
+{% endif %}
+{% endfor %}

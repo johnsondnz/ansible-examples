@@ -1,0 +1,4 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% set failed = true 
+    if 'Online' not in item.state else false %}
+{{ output_macro('Chassis FPC', 'Slot {} Online'.format(item.slot), failed) }}

@@ -1,0 +1,12 @@
+---
+- name: show chassis fpc pic-status
+  junos_command:
+    commands: show chassis fpc pic-status
+    display: xml
+    provider: "{{ netconf }}"
+  register: pic_status
+
+  tags:
+    - chassis
+    - pic
+    - fpc

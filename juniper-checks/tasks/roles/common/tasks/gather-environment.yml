@@ -1,0 +1,10 @@
+---
+- name: show chassis environment
+  junos_command:
+    commands: show chassis environment
+    display: xml
+    provider: "{{ netconf }}"
+  register: chassis_environment
+
+  tags:
+    - environment

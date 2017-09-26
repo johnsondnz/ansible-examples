@@ -1,0 +1,4 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% set failed = true 
+    if chassis_alarms.output[0]['rpc-reply']['alarm-information']['alarm-summary']['active-alarm-count'] is defined else false %}
+{{ output_macro('Chassis Alarms', 'Alarm count is 0', failed) }}

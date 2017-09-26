@@ -1,0 +1,12 @@
+---
+- name: show chassis routing-engine
+  junos_command:
+    commands: show chassis routing-engine
+    display: xml
+    provider: "{{ netconf }}"
+  register: routing_engine
+
+  tags:
+    - chassis
+    - re
+    

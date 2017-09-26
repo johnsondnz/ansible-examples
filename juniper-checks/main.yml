@@ -1,0 +1,9 @@
+---
+- name: Checking MPLS devices
+  hosts: all
+  connection: local
+
+- include: tasks/setup.yml
+- include: tasks/ssh-key-grab.yml
+- include: tasks/def_roles.yml
+- include: tasks/assemble_reports.yml

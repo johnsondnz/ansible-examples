@@ -1,0 +1,11 @@
+---
+- name: show version
+  junos_command:
+    commands: show version
+    display: xml
+    provider: "{{ netconf }}"
+  register: show_version
+
+  tags:
+    - version
+    - system

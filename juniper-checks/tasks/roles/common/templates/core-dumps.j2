@@ -1,0 +1,14 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% if core_dumps.output[0]['rpc-reply']['multi-routing-engine-results'] is defined %}{# first test for multi-chassis JSON structure #}
+{% set route_engine = item['re-name'] %}
+{% set failed = true 
+    if item['directory-list']['directory'] is defined
+    else false %}
+{{ output_macro('System Core Dumps', 'None exist on {}'.format(route_engine), failed) }}
+{% else %}{# fallback to single-chassis JSON structure #}
+{% set route_engine = 'fpc0' %}
+{% set failed = true 
+    if item['directory'] is defined
+    else false %}
+{{ output_macro('System Core Dumps', 'None exist on {}'.format(route_engine), failed) }}
+{% endif %}

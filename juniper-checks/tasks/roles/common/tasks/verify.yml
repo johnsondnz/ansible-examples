@@ -1,0 +1,82 @@
+---
+- name: Check for system alarms
+  template:
+    src: system_alarms.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/01-system_alarms.out
+
+- name: Check for chassis alarms
+  template:
+    src: chassis_alarms.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/02-chassis_alarms.out
+
+- name: Verify software versions on single-route-engine device
+  template:
+    src: software_ver.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/03-software_ver-{{ item.name }}.out
+  when: show_version.output[0]['rpc-reply']['software-information'] is defined and 'jais' not in item.name
+  with_items:
+    - "{{ show_version.output[0]['rpc-reply']['software-information']['package-information'] }}"
+
+- name: Verify software versions on multi-route-engine device
+  template:
+    src: software_ver.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/03-software_ver-{{ item['re-name'] }}.out
+  when: show_version.output[0]['rpc-reply']['multi-routing-engine-results'] is defined
+  with_items:
+    - "{{ show_version.output[0]['rpc-reply']['multi-routing-engine-results']['multi-routing-engine-item'] }}"
+
+- name: Check for core-dumps on single-route-engine device
+  template:
+    src: core-dumps.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/04-core-dumps.out
+  when: core_dumps.output[0]['rpc-reply']['directory-list'] is defined
+  with_items:
+    - "{{ core_dumps.output[0]['rpc-reply']['directory-list'] }}"
+
+- name: Check for core-dumps on multi-route-engine device
+  template:
+    src: core-dumps.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/04-core-dumps-{{ item['re-name'] }}.out
+  when: core_dumps.output[0]['rpc-reply']['multi-routing-engine-results'] is defined
+  with_items:
+    - "{{ core_dumps.output[0]['rpc-reply']['multi-routing-engine-results']['multi-routing-engine-item'] }}"
+
+- name: Verify FPC States
+  template:
+    src: chassis-fpc-status.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/05-fpc-{{ item.slot }}-state.out
+  with_items:
+    - "{{ pic_status.output[0]['rpc-reply']['fpc-information'].fpc }}"
+
+- name: Verify chassis environment
+  template:
+    src: chassis-environment.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/06-chassis-environment.out
+
+# - name: Verify PIC States ----------------------------------------------------------------- TEST LOGIC DIFFICULT DUE TO NESTED LISTS AND MULTI-CHASSIS, SKIPPED FOR NOW
+#   template:
+#     src: chassis-pic-status.j2
+#     dest: ../{{ build_dir }}/{{ inventory_hostname} }/07-pic-{{ item['pic-slot'] }}-state.out
+#   with_subelements:
+#     - "{{ pic_status.output[0]['rpc-reply']['fpc-information'].fpc }}"
+#     - "pic" ------------------------------------------------------------------------------
+
+- name: Verify interfaces have valid descriptions
+  template:
+    src: interface-descriptions.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/08-interface-descriptions.out
+
+- name: Verify WAN, COR and SystemPorts are up
+  template:
+    src: interface-up.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/09-interfaces-up.out
+
+# - name: Verify MPLS interfaces have MTU of {{ mpls_mtu }} ---------------------------------- MOVE TO MPLS_FABRIC ROLE
+#   template:
+#     src: interface-mpls-mtu.j2
+#     dest: ../{{ build_dir }}/{{ inventory_hostname }}/08-interfaces-mpls-mtu.out
+
+- name: Verify operational ethernet interface duplex mode is full
+  template:
+    src: interface-duplex.j2
+    dest: ../{{ build_dir }}/{{ inventory_hostname }}/10-interfaces-duplex.out

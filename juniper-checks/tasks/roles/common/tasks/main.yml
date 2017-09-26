@@ -1,0 +1,9 @@
+---
+- include: gather-facts.yml
+- include: gather-alarms.yml
+- include: gather-software-version.yml
+- include: gather-core-dumps.yml
+- include: gather-pic-status.yml
+- include: gather-environment.yml
+- include: gather-physical-interfaces.yml
+- include: verify.yml

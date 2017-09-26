@@ -1,0 +1,8 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% for item in chassis_environment.output[0]['rpc-reply']['environment-information']['environment-item'] %}
+{% if 'Absent' not in item.status %}
+{% set failed = true 
+    if 'OK' not in item.status else false %}
+{{ output_macro("Chassis Environment", "{} status is 'OK'".format(item.name), failed) }}
+{% endif %}
+{% endfor %}

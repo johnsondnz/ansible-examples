@@ -1,0 +1,22 @@
+---
+- name: show system alarms
+  junos_command:
+    commands: show system alarms
+    display: xml
+    provider: "{{ netconf }}"
+  register: system_alarms
+
+  tags:
+    - alarms
+    - system
+
+- name: show chassis alarms
+  junos_command:
+    commands: show chassis alarms
+    display: xml
+    provider: "{{ netconf }}"
+  register: chassis_alarms
+
+  tags:
+    - alarms
+    - chassis

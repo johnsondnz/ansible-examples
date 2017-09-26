@@ -1,0 +1,25 @@
+---
+- name: Generate Report
+  hosts: all
+  connection: local
+
+  tasks:
+
+    - name: Assemble full reports
+      assemble:
+        src: "../{{ build_dir }}/{{ inventory_hostname }}"
+        dest: "../{{ report_dir }}/full-report-{{ inventory_hostname }}.txt"
+
+    - include: full-report-test-summary.yml
+
+    - name: Create the aggregated full report
+      assemble:
+        src: "../{{ report_dir }}"
+        dest: "../{{ report_dir }}/00-full-report.txt"
+      run_once: true
+
+    - file:
+        path: ../{{ build_dir }}
+        state: absent
+      run_once: true
+      changed_when: False

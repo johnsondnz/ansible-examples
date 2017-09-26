@@ -1,0 +1,9 @@
+{% from 'output_macro.j2' import output_macro with context %}
+{% for item in interfaces.output[0]['rpc-reply']['interface-information']['physical-interface'] %}
+{% if item.description is defined and ('WAN' in item.description or 'COR' in item.description or 'SystemPort' in item.description) and item['admin-status'] =='up' %}
+{% set failed = true 
+    if 'up' not in item['oper-status'] 
+    else false %}
+{{ output_macro('Interface', '{} as WAN, COR or SystemPort is up'.format(item.name), failed) }}
+{% endif %}
+{% endfor %}

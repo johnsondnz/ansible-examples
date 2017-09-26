@@ -1,0 +1,10 @@
+---
+- name: Gather facts about devices
+  junos_facts:
+    gather_subset: [ hardware ]
+    provider: "{{ netconf }}"
+  register: facts
+
+  tags:
+    - base
+    

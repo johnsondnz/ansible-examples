@@ -1,0 +1,45 @@
+---
+- name: Cleanup old reports
+  hosts: all
+  connection: local
+
+  tasks:
+
+    - command: date
+      register: play_run_datetime
+      run_once: true
+
+    - file:
+        path: ../{{ build_dir }}
+        state: absent
+      run_once: true
+      changed_when: false
+
+    - file:
+        path: ../{{ build_dir }}
+        state: directory
+      run_once: true
+      changed_when: false
+
+    - file:
+        path: ../{{ build_dir }}/{{ inventory_hostname }}
+        state: directory
+      run_once: true
+      changed_when: false
+
+    - file:
+        path: ../{{ report_dir }}
+        state: absent
+      run_once: true
+      changed_when: false
+
+    - file:
+        path: ../{{ report_dir }}
+        state: directory
+      run_once: true
+      changed_when: false
+
+    - template:
+        src: ../templates/base.j2
+        dest: ../{{ build_dir }}/{{ inventory_hostname }}/00-header.out
+      changed_when: false

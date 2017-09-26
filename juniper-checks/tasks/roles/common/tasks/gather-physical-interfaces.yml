@@ -1,0 +1,10 @@
+---
+- name: show interfaces media
+  junos_command:
+    commands: show interfaces media
+    display: xml
+    provider: "{{ netconf }}"
+  register: interfaces
+
+  tags:
+    - mpls_fabric
