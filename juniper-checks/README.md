@@ -15,7 +15,7 @@ group_vars/all.yml `report_type: 'fail'` prints only failures
 
 Above example will print all 'fail' and 'pass' checks in device reports.
 
-# Full Report Example Output
+# Full Report Example
 ```Ansible Generated MPLS Report
 Hostname: LAB-zz-MPLS-PE01
 Report Type: FULL
