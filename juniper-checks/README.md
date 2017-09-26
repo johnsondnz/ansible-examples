@@ -1,6 +1,6 @@
 # Juniper Checks
 * Common checks run again EX4300, SRX550 and MX5 platforms.
-* Generates a report per devices in ./reports/ folder.
+* Generates a report per devices in `./reports/` folder.
 * default variable `report_type` is set to `'fail'` in `./group_vars/all.yml`
   * `'fail'` forces report generation to print only failures.
   * See below on how to override to all `'fail' and 'pass'`
