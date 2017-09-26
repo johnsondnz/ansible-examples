@@ -2,7 +2,7 @@
 ansible 2.4+
 
 ## Variables
-group_vars/all.yml `<report_type: 'fail'>` prints only failures
+group_vars/all.yml `report_type: 'fail'` prints only failures
 
 ```ansible-playbook -i hosts main.yml -e "report_type='full'"```
 
