@@ -15,7 +15,7 @@ group_vars/all.yml `report_type: 'fail'` prints only failures
 
 Above example will print all 'fail' and 'pass' checks in device reports.
 
-# Example Output
+# Full Report Example Output
 ```Ansible Generated MPLS Report
 Hostname: LAB-zz-MPLS-PE01
 Report Type: FULL
@@ -358,5 +358,104 @@ TASK: Interface                 ge-1/2/1 operating in 'full-duplex' mode        
 
 
                             -- END OF DEVICE REPORT --
+```
+
+# Fail Report Example
+```
+Ansible Generated MPLS Report
+Hostname: LAB-tt-MPLS-PE01
+Report Type: FAIL
+
+TASK                            TESTED ATTRIBUTE                                                           RESULT
+-----------------------------------------------------------------------------------------------------------------
+TASK: System Alarms             Alarm count is 0                                                           [FAIL]
+
+                            -- END OF DEVICE REPORT --
 
 
+Ansible Generated MPLS Report
+Hostname: LAB-nn-MPLS-PE01
+Report Type: FAIL
+
+TASK                            TESTED ATTRIBUTE                                                           RESULT
+-----------------------------------------------------------------------------------------------------------------
+TASK: System Alarms             Alarm count is 0                                                           [FAIL]
+TASK: Chassis Alarms            Alarm count is 0                                                           [FAIL]
+TASK: Chassis Environment       Power Supply 0 status is 'OK'                                              [FAIL]
+TASK: Interface                 ge-0/0/4 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 e1-3/0/0 as WAN, COR or SystemPort is up                                   [FAIL]
+
+
+
+                            -- END OF DEVICE REPORT --
+
+
+Ansible Generated MPLS Report
+Hostname: LAB-qq-MPLS-STK-SW
+Report Type: FAIL
+
+TASK                            TESTED ATTRIBUTE                                                           RESULT
+-----------------------------------------------------------------------------------------------------------------
+TASK: Interface                 ge-0/0/6 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-0/0/19 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/6 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-1/0/12 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/19 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/21 as WAN, COR or SystemPort is up                                  [FAIL]
+
+
+                            -- END OF DEVICE REPORT --
+
+
+Ansible Generated MPLS Report
+Hostname: LAB-yy-MPLS-PE01
+Report Type: FAIL
+
+TASK                            TESTED ATTRIBUTE                                                           RESULT
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
+                            -- END OF DEVICE REPORT --
+
+
+Ansible Generated MPLS Report
+Hostname: LAB-xx-MPLS-STK-SW
+Report Type: FAIL
+
+TASK                            TESTED ATTRIBUTE                                                           RESULT
+-----------------------------------------------------------------------------------------------------------------
+TASK: System Alarms             Alarm count is 0                                                           [FAIL]
+TASK: Software Version          Package 'junos' is '13.2X51-D21.1' on fpc0                                 [FAIL]
+TASK: Software Version          Package 'fips-mode-powerpc' is '13.2X51-D21.1' on fpc0                     [FAIL]
+TASK: Software Version          Package 'jdocs-ex' is '13.2X51-D21.1' on fpc0                              [FAIL]
+TASK: Software Version          Package 'junos-ex-4300' is '13.2X51-D21.1' on fpc0                         [FAIL]
+TASK: Software Version          Package 'jweb-ex' is '13.2X51-D21.1' on fpc0                               [FAIL]
+TASK: Software Version          Package 'py-base-powerpc' is '13.2X51-D21.1' on fpc0                       [FAIL]
+TASK: Software Version          Package 'junos' is '13.2X51-D21.1' on fpc1                                 [FAIL]
+TASK: Software Version          Package 'fips-mode-powerpc' is '13.2X51-D21.1' on fpc1                     [FAIL]
+TASK: Software Version          Package 'jdocs-ex' is '13.2X51-D21.1' on fpc1                              [FAIL]
+TASK: Software Version          Package 'junos-ex-4300' is '13.2X51-D21.1' on fpc1                         [FAIL]
+TASK: Software Version          Package 'jweb-ex' is '13.2X51-D21.1' on fpc1                               [FAIL]
+TASK: Software Version          Package 'py-base-powerpc' is '13.2X51-D21.1' on fpc1                       [FAIL]
+TASK: System Core Dumps         None exist on fpc1                                                         [FAIL]
+TASK: Interface                 ge-0/0/4 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-0/0/5 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-0/0/8 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-0/0/10 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-0/0/12 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-0/0/17 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-0/0/18 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-0/0/19 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-0/0/20 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/4 as WAN, COR or SystemPort is up                                   [FAIL]
+TASK: Interface                 ge-1/0/12 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/18 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/19 as WAN, COR or SystemPort is up                                  [FAIL]
+TASK: Interface                 ge-1/0/21 as WAN, COR or SystemPort is up                                  [FAIL]
+
+                            -- END OF DEVICE REPORT --
+
+
+```
