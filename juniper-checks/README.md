@@ -357,6 +357,6 @@ TASK: Interface                 ge-1/2/0 operating in 'full-duplex' mode        
 TASK: Interface                 ge-1/2/1 operating in 'full-duplex' mode                                   [PASS]
 
 
-                            -- END OF DEVICE REPORT --```
+                            -- END OF DEVICE REPORT --
 
 
